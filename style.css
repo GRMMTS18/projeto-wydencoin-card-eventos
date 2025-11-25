@@ -1,0 +1,289 @@
+:root{
+    --vidro:rgba(225,225,225,0.1);
+}
+
+
+/*ESTILO GERAL*/
+*{
+      padding: 0;
+      margin: 0;
+    box-sizing: border-box;
+    font-family: "Teachers", sans-serif
+}
+
+body{
+    background: white;
+    height: 100vh;
+}
+
+.interface{
+    max-width: 1280px;
+    margin: 0 0;
+    position: relative;
+}
+
+/*ESTILO MENU*/
+
+header{
+    padding: 20px 4%;
+}
+
+header > .interface{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header a{
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.2s;
+}
+
+/*COR MENU*/
+
+header a:hover{
+    color: #ff3d00;
+    transform: scale(1.05);
+}
+
+/*COR MENU*/
+
+header nav ul{
+    list-style-type: none;
+}
+
+header nav ul li{
+    display: inline-block;
+    padding: 0 80px;
+    font-size: 15px;
+}
+
+header a img{
+    max-width: 20vh;
+    max-height: 20vh;
+}
+
+/*ANIMAÇÃO MENU*/
+
+.menulink:after{
+    content: '';
+    height: 1px;
+    width: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #000;
+    transition: width 0.9s ease;
+}
+
+.menulink:hover:after{
+    width: 100%;
+}
+
+/* QUADRO EVENTOS */
+
+.eventos-titulo{
+    text-align: center;
+    font-size: 2rem;
+    margin: 10px;
+}
+
+.eventos{
+    display: grid;
+    padding: 6rem 2rem;
+    gap: 18px;
+    /* Padrão em mobile: 1 coluna */
+    grid-template-columns: 1fr;
+}
+
+.eventos-card{
+    position: relative;
+    min-height: 50rem;
+    padding: 1rem 1rem 5rem 1rem; /* Padding inferior para o botão "Inscreva-se" */
+    background: #88005b;
+    margin-block: 0.75rem;
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+    border-radius: 16px;
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--vidro);
+    overflow: hidden; 
+    transition: all 0.3s ease; 
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.30) 0px 3px 8px;
+    
+}
+
+/* ANIMAÇÃO DE ZOOM AO HOVER NOS CARDS */
+.eventos-card:hover {
+    transform: scale(1.03); 
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px; 
+}
+
+.evento-image{
+    /* CORREÇÃO DO BUG: Garantindo que a imagem ocupe a largura total e a altura seja auto */
+    width: 100%;
+    height: auto; 
+    max-height: 360px; /* Limite máximo para a imagem */
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.evento-titulo {
+    color: white;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+}
+
+/* Estilo para organizar os detalhes do evento lado a lado */
+.detalhes-lista {
+    margin-top: 1rem;
+    padding: 10px;
+    border-radius: 19px;
+    background-color: rgb(114, 5, 81); 
+    color: rgb(255, 255, 255); 
+}
+
+/* Define que cada linha de termo/definição é um flex container */
+.detalhes-lista dt {
+    font-weight: bold;
+    width: 100px; 
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* Estilo para os valores da lista (a informação) */
+.detalhes-lista dd {
+    display: inline-table;
+    margin-left: 0;
+    margin-bottom: 0.5rem;
+    width: calc(100% - 105px); 
+}
+
+.descricao-completa {
+    color: white; 
+    max-height: 200px; 
+    overflow-y: auto;
+    padding-right: 15px; 
+    margin-top: 20px;
+    padding-top: 15px;
+    
+    word-wrap: break-word; 
+    word-break: break-word; 
+    overflow-x: hidden;
+    
+    margin-bottom: 2rem; /* Espaçamento extra para separar a descrição do botão */
+}
+
+.descricao-completa p {
+    text-align: justify;
+    margin: 0;
+}
+
+.botao-evento { /* Botão INSCREVA-SE */
+   position: absolute;
+   bottom: 1rem;
+   left: 1rem; 
+   right: 1rem; 
+   color: #44002d;
+   background: #e1bfd6;
+   padding: 1rem 2rem;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+   width: calc(100% - 2rem); 
+   transition: all 0.2s ease;
+   font-size: 1.7rem;
+   line-height: 1rem;
+   text-align: center;
+}
+
+.botao-evento:hover{
+    transform:scale(1.02);
+    box-shadow: 0 5px 15px #e1bfd6;
+}
+
+/* --- ESTILO PARA O MODAL DE INSCRIÇÃO DO USUÁRIO --- */
+
+.modal-overlay { /* Fundo escuro que cobre toda a tela */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content { /* Caixa de conteúdo do modal */
+    background-color: #fefefe;
+    color: #44002d; 
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative; 
+    animation: fadeInModal 0.3s ease;
+}
+
+.modal-content h3 {
+    color: #88005b;
+    margin-top: 5px; 
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+}
+
+.fechar-modal-usuario { /* Botão "Ótimo!" */
+    background-color: #ff3d00;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+.fechar-modal-usuario:hover {
+    background-color: #b12900;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: translateY(-30px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ======================================================= */
+/* MEDIA QUERIES PARA LAYOUT (COLUNAS) */
+/* ======================================================= */
+
+/* Telas maiores que 600px (Tablets e Desktops pequenos): 2 Colunas */
+@media screen and (min-width: 600px) {
+    .eventos {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Telas maiores que 900px (Desktops): 3 Colunas */
+@media screen and (min-width: 900px) {
+    .eventos {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .eventos {
+        grid-template-columns: 1fr;
+    }
+}
